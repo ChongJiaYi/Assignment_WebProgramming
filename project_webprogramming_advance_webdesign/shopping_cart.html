@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart</title>
+    <!--Icone link-->
+    <script src="https://kit.fontawesome.com/722e303770.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!--FontFamily-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Slabo+27px:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro:wght@400;700&display=swap">
+    <style>
+
+        body{
+          background-color:#FFF2F2;
+        }
+
+        .header{
+          width: 100%;
+          height: 80px;
+          background-color: #E5E0FF;
+          background-size: cover;
+          display: flex;
+          justify-content: end;
+        }
+
+        .search_bar{
+          width: 100%;
+          max-width: 500px;
+          height: 35px;
+          margin-top: 20px;
+          margin-right: 50px;
+          background-color:#7286D3;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          border-radius:20px ;
+        }
+
+        .search_bar input{
+          width:400px;
+          background-color:#7286D3;
+          border-radius: 20px;
+          outline: 20px;
+          border: 0px;
+          font-size: 20px;
+        }
+
+        .search_bar button i{
+          width: 20px;
+        }
+
+        .search_bar button{
+          background-color: #7286D3;
+          border-radius: 20px;
+          border: 0px;
+        }
+
+        .header_nav{
+          display: flex;
+          margin-top: 60px;
+          margin-left: -450px;
+          margin-right: 200px;
+        }
+
+        .header_nav a{
+          text-decoration: none;
+          color: #000000;
+          padding-right: 10px;
+          font-size: 12px;
+        }
+
+        .header_profileIcon{
+            text-decoration: none;
+        }
+
+        .header_profileIcon i{
+          color: #8EA7E9;
+          text-decoration: none;
+          font-size: 35px;
+          margin-top: 20px;
+          margin-right: 30px;
+        }
+
+        .footer{
+          width: 100%;
+          height: 270px;
+          background-color:#7286D3 ;
+          margin-top: 80px;
+        }
+
+        .left{
+          display: flex;
+          margin: 20px;
+        }
+
+        .footer{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .footer_content{
+          margin: 20px;
+        }
+
+        .fotter_selection a{
+          display: block;
+          text-decoration: none;
+          color: black;
+          font-size: 15px;
+          margin-top: 10px;
+        }
+
+        .right{
+          display: flex;
+          margin: 20px;
+        }
+
+        .fotter_selection img{
+          background-color: white;
+          width: 60px;
+          height: 30px;
+          margin-top: 10px;
+        }
+
+        .shopping_cart{
+            margin: 50px;
+            background-color: #F2E2E2;
+            width: auto;
+            height: auto;
+        }
+
+        .shopping_cart h1, .section_1 h1{
+          font-family: "Montserrat", sans-serif;
+          padding: 50px;
+        }
+
+        .cart_content{
+          display: flex;
+        }
+
+
+
+        .cart-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+        }
+
+        .product-list, .order_summary{
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .product-list img{
+          max-width: 100px;
+          margin-right: 20px;
+        }
+
+        .product_record h5{
+          width: 500px;
+        }
+
+        #product_content{
+          display: flex;
+        }
+
+        #productName{
+          margin-left: 20px;
+        }
+
+        h6{
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+
+        .price span{
+          font-size: 30px;
+        }
+
+        .cart_button{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .cart_button button{
+          background-color: #000000;
+          height: 50px;
+          width: 150px;
+          border: 0px;
+          font-family:'Slabo', serif;
+          color: white;
+          margin-top: 50px;
+        }
+
+        #first{
+          margin-left: 70px;
+        }
+
+         #product_image{
+          width: auto;
+          height: 350px;
+        }
+
+        
+    </style>
+  </head>
+
+  <body>
+    <!--Header-->
+    <div class="header">
+      <div class="search_bar">
+          <button type="submit">
+              <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+          </button>
+          <input type="text" id="header_search" placeholder="search">
+          <button type="submit">
+              <i class="fa-solid fa-camera" style="color: #000000;"></i>
+          </button>  
+        </div> 
+
+        <div class="header_nav">
+          <a href="">My Profile</a>
+          <a href="">My Voucher</a>
+          <a href="">Order History</a>
+          <a href="">My Review</a>
+          <a href="">Wishlist</a>
+        </div>
+
+        <a href="" class="header_profileIcon">
+            <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+            <i class="fa-solid fa-circle-user" style="color: #000000;"></i>
+        </a>
+      </div>
+
+      <!--Shopping Cart-->
+      <div class="shopping_cart">
+        <h1>Your Cart</h1>
+            <div class="cart_content">
+                <div class="container card-container">
+                    <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col" class="border-0 bg-light">
+                                <div class="p-2 px-3 text-uppercase">PRODUCT</div>
+                              </th>
+                              <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 " style="margin-right: 25px;">COLOR</div>
+                              </th>
+                              <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 " style="margin-right: 25px;">SIZE</div>
+                              </th>
+                              <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 " style="margin-right: 25px;">QUANTITY</div>
+                              </th>
+                              <th scope="col" class="border-0 bg-light">
+                                <div class="py-2" style="margin-right: 25px;">PRICE</div>
+                              </th>
+                            </tr>
+                          </thead>
+
+                          <!--Product 1-->
+                          <tbody> 
+                            <tr>
+                              <th scope="row" class="border-0">
+                                <div class="p-2" id="product_content">
+                                  <img src="assignment_image/dress (3).jpg" alt="" style="max-width: 100px;" class="img-fluid rounded shadow-sm">
+                                  <div class="ml-3 d-inline-block align-middle">
+                                    <p id="productName" class="mb-0">Women Sleeveless Strappy Summer Long Dress</p>
+                                  </div>
+                                </div>
+                              </th>
+                              <td class="border-0 align-middle">White</td>
+                              <td class="border-0 align-middle">L</td>
+                              <td class="border-0 align-middle">2</td>
+                              <td class="border-0 align-middle">RM 90.00</td>
+                            </tr>
+                          </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 pb-5" id="calculation">
+                  <div class="container card-container">
+                    <div class="order_summary">
+                        <div class="price">
+                            <h3>Total Price</h3>
+                            <hr>
+                            <h6>Total Amount <span>RM 150.00</span></h6>
+                        </div>
+                        <div class="cart_button">
+                          <a href="#"><button type="button">Continue Shopping</button></a>
+                          <a href="#"><button type="button">Check Out</button></a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+      <!--Shopping Cart End-->
+
+      <!--you may like too-->
+        <div class="more_product">
+            <div class="section_1">
+                <h1>You May Also Like</h1>
+            </div>
+        </div>
+
+        <div class="main_content">
+          <div class="row px-xl-5" style="margin: auto;">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1" id="first">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" id="product_image" src="assignment_image/flashsale_copy.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 style="height: 40px;">Women Sleeveless Strappy Summer Long Dress</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>RM50.00</h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1" id="first">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" id="product_image" src="assignment_image/dress.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 style="height: 40px;">Women Solid Butterfly Sleeve Belted Dress</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>RM50.00</h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12" id="first">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" id="product_image" src="assignment_image/cardigan.jpg" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-3 pt-4 pb-3">
+                        <h6 style="height: 40px;">Women Button Pattern Cardigan</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>RM45.90</h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      <!--Footer-->
+      <div class="footer">
+        <div class="left">
+
+            <div class="footer_content">
+                <h6>Category</h6>
+                <div class="fotter_selection">
+                    <a href="">Men's Cloth</a>
+                    <a href="">Women's Cloth</a>
+                </div>
+            </div>
+
+            <div class="footer_content">
+                <h6>About Us</h6>
+                <div class="fotter_selection">
+                    <a href="">Voucher</a>
+                    <a href="">Promotion</a>
+                </div>
+            </div>
+
+            <div class="footer_content">
+                <h6>Customer Info</h6>
+                <div class="fotter_selection">
+                    <a href="">Wishlist</a>
+                    <a href="">Refun & Return</a>
+                    <a href="">Customer Service</a>
+                    <a href="">Contact Us</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+              <div class="footer_content">
+                <h6>Payment Method</h6>
+                <div class="fotter_selection">
+                    <img src="assignment_image/fpx_image.png" alt="fpx">
+                    <img src="assignment_image/visa_image.png" alt="visa">
+                    <img src="assignment_image/applyPay_image.png" alt="applepay">
+                      <div class="picture">
+                        <img src="assignment_image/tng_image.png" alt="tng">
+                        <img src="assignment_image/masterCard_image.png" alt="mastercard">
+                        <img src="assignment_image/myBank_image.png" alt="myBank">
+                      </div>
+                </div>
+            </div>
+
+              <div class="footer_content">
+                  <h6>Logistics</h6>
+                  <div class="fotter_selection">
+                    <img src="assignment_image/ninjaVan_image.png" alt="ninjavan">
+                    <img src="assignment_image/jtExpress_image.png" alt="JT_Express">
+                    <img src="assignment_image/poslaju_image.png" alt="poslaju">
+                      <div class="picture">
+                        <img src="assignment_image/fedex_image.png" alt="fedex">
+                        <img src="assignment_image/dhl_image.png" alt="dhl">
+                      </div>
+                  </div>
+              </div>
+            <div class="footer_content">
+                <h6>Follow Us</h6>
+                <div class="fotter_selection">
+                    <a href="">Facebook</a>
+                    <a href="">Instagram</a>
+                    <a href="">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

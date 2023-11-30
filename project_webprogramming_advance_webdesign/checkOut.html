@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Check Out</title>
+    <!--Icone link-->
+    <script src="https://kit.fontawesome.com/722e303770.js" crossorigin="anonymous"></script>
+
+    <!--Font Family-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+         body{
+          background-color:#FFF2F2;
+        }
+
+        .header{
+          width: 100%;
+          height: 80px;
+          background-color: #E5E0FF;
+          background-size: cover;
+          display: flex;
+          justify-content: end;
+        }
+
+        .search_bar{
+          width: 100%;
+          max-width: 500px;
+          height: 35px;
+          margin-top: 20px;
+          margin-right: 50px;
+          background-color:#7286D3;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          border-radius:20px ;
+        }
+
+        .search_bar input{
+          width:400px;
+          background-color:#7286D3;
+          border-radius: 20px;
+          outline: 20px;
+          border: 0px;
+          font-size: 20px;
+        }
+
+        .search_bar button i{
+          width: 20px;
+        }
+
+        .search_bar button{
+          background-color: #7286D3;
+          border-radius: 20px;
+          border: 0px;
+        }
+
+        .header_nav{
+          display: flex;
+          margin-top: 60px;
+          margin-left: -450px;
+          margin-right: 200px;
+        }
+
+        .header_nav a{
+          text-decoration: none;
+          color: #000000;
+          padding-right: 10px;
+          font-size: 12px;
+        }
+
+        .header_profileIcon{
+            text-decoration: none;
+        }
+
+        .header_profileIcon i{
+          color: #8EA7E9;
+          text-decoration: none;
+          font-size: 35px;
+          margin-top: 20px;
+          margin-right: 30px;
+        }
+
+        .footer{
+          width: 100%;
+          height: 270px;
+          background-color:#7286D3 ;
+          margin-top: 80px;
+        }
+
+        .left{
+          display: flex;
+          margin: 20px;
+        }
+
+        .footer{
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .footer_content{
+          margin: 20px;
+        }
+
+        .fotter_selection a{
+          display: block;
+          text-decoration: none;
+          color: black;
+          font-size: 15px;
+          margin-top: 10px;
+        }
+
+        .right{
+          display: flex;
+          margin: 20px;
+        }
+
+        .fotter_selection img{
+          background-color: white;
+          width: 60px;
+          height: 30px;
+          margin-top: 10px;
+        }
+
+        .checkout{
+          background-color: #F2E2E2;
+          width: auto;
+          height: auto;
+          margin: 50px;
+        }
+
+        .checkout h1{
+          font-family: "Montserrat", sans-serif;
+          padding: 50px;
+        }
+
+        .address_letter{
+          background-image: url(assignment_image/checkou_address.jpg);
+          background-size: cover;
+          height: 100px;
+          margin-left: 20px;
+          margin-right: 20px;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .name_phone{
+          margin-top: 30px;
+          margin-left: 60px
+        }
+
+        .address{
+          margin-top: 30px ;
+          margin-right: 100px;
+        }
+
+        .chekout_productOrdered{
+          margin-top: 40px;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        #productName{
+          margin-left: 20px;
+        }
+
+        .shipping_fee{
+          width: auto;
+          height: auto;
+        }
+        
+        .content{
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          padding: 30px;
+        }
+
+        .shipping_option{
+          display: flex;
+          padding-right: 40px;
+        }
+
+        .selectionshp, .shippingPrice, .shipping_option h5{
+          margin-right: 50px;
+        }
+
+        .selectionshp p{
+          font-size: 10px;
+          color: grey;
+        }
+
+        .totalAmount{
+          color: grey;
+          text-align: end;
+          padding: 30px;
+          margin-right: 40px;
+        }
+
+        .totalAmount span{
+          font-size: 40px;
+          color: #000000;
+          font-family: "Montserrat", sans-serif;
+          margin-left: 30px;
+        }
+
+        .choose{
+          display: flex;
+          justify-content: space-between;
+          padding: 20px;
+        }
+
+        .section1,.section2{
+          display: flex;
+        }
+
+        .payment_selection img{
+            width: 50px;
+            height: 30px;
+        }
+
+        .section1 h5, .section2 h5{
+          margin-right: 50px;
+        }
+
+        .section2 a{
+          padding-right: 50px;
+        }
+
+        .calculationPart{
+          display: flex;
+          padding: 30px;
+          padding-right: 80px;
+          justify-content: right;
+          align-items: center;
+        }
+
+        .amount_title{
+          margin-right: 40px;
+        }
+
+        .amount_number{
+          text-align: end;
+        }
+
+        .placeOrder{
+          text-align: end;
+          margin-right: 100px;
+        }
+      
+        .placeOrder button{
+          width: 300px;
+          height: 50px;
+          border-width: 1px;
+          background-color: #000000;
+          color: white;
+          font-family:'Slabo', serif;
+          font-size: 25px;
+        }
+
+
+    </style>
+  </head>
+
+  <body>
+    <!--Header-->
+    <div class="header">
+        <div class="search_bar">
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+            </button>
+            <input type="text" id="header_search" placeholder="search">
+            <button type="submit">
+                <i class="fa-solid fa-camera" style="color: #000000;"></i>
+            </button>  
+          </div> 
+
+          <div class="header_nav">
+            <a href="">My Profile</a>
+            <a href="">My Voucher</a>
+            <a href="">Order History</a>
+            <a href="">My Review</a>
+            <a href="">Wishlist</a>
+          </div>
+
+          <a href="" class="header_profileIcon">
+              <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+              <i class="fa-solid fa-circle-user" style="color: #000000;"></i>
+          </a>
+  </div>
+
+<!--address-->
+<div class="checkout">
+    <h1>Check Out</h1>
+    <div class="address_letter">
+        <div class="name_phone">
+            <h6>Subing</h6>
+            <h6>(+60) 1116993260</h6>
+        </div>
+        <div class="address">
+            <h6>1234, Jalan ABC 2/1, Taman Kajang, 43000, Kajang, Selangor</h6>
+        </div>
+    </div>
+
+    <!--product ordered-->
+    <div class="chekout_productOrdered">
+      <div class="container card-container">
+          <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="p-2 px-3 text-uppercase">PRODUCT</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 " style="margin-right: 25px;">Unit Price</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 " style="margin-right: 25px;">Quantity</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2" style="margin-right: 25px;">Item Subtotal</div>
+                    </th>
+                  </tr>
+                </thead>
+
+                <!--Product 1-->
+                <tbody> 
+                  <tr>
+                    <th scope="row" class="border-0">
+                      <div class="p-2" id="product_content">
+                        <img src="assignment_image/dress (3).jpg" alt="" style="max-width: 100px;" class="img-fluid rounded shadow-sm">
+                        <div class="ml-3 d-inline-block align-middle">
+                          <p id="productName" class="mb-0">Women Sleeveless Strappy Summer Long Dress</p>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="border-0 align-middle">RM 45.00</td>
+                    <td class="border-0 align-middle">2</td>
+                    <td class="border-0 align-middle">RM 90.00</td>
+                  </tr>
+                </tbody>
+
+              </table>
+          </div>
+      </div>
+    </div>
+
+      <!--selection and shipping fee-->
+      <div class="shipping_fee">
+        <div class="content">
+          <!--message box-->
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label for="inputPassword6" class="col-form-label">Messages</label>
+            </div>
+            <div class="col-auto">
+              <input type="text" id="" class="form-control">
+            </div>
+          </div>
+          <!--shipping method-->
+          <div class="shipping_option">
+              <h5>Shipping Option:</h5>
+              <div class="selectionshp">
+                  <h5>J&T Express</h5>
+                  <p>Receive by 08-08-2023</p>
+                  <a href="#">CHANGE</a>
+              </div>
+              <div class="shippingPrice">
+                <h6>RM 4.90</h6>
+              </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="totalAmount">
+          <p>Order Total: <span>RM 94.90</span></p>
+      </div>
+</div>
+
+<!--adding voucher and payment method-->
+<div class="checkout">
+    <div class="choose">
+        <div class="section1">
+          <h5>Payment Method: </h5>
+          <div class="payment_selection">
+              <button><img src="assignment_image/tng_image.png"></button>
+              <button><img src="assignment_image/fpx_image.png"></button>
+              <button><img src="assignment_image/masterCard_image.png"></button>
+              <button><img src="assignment_image/myBank_image.png"></button>
+              <button><img src="assignment_image/applyPay_image.png"></button>
+              <button><img src="assignment_image/visa_image.png"></button>
+          </div>
+        </div>
+        <div class="section2">
+            <h5>Store Voucher</h5>
+            <a href="#">SELECT VOUCHER</a>
+        </div>
+    </div>
+    <hr>
+    <div class="calculationPart">
+        <div class="amount_title">
+            <p>Merchandise Subtotal: </p>
+            <p>Shipping Fee: </p>
+            <p>Voucher: </p>
+            <p>Total Payment: </p>
+        </div>
+        <div class="amount_number">
+            <p>RM 90.00</p>
+            <p>RM 4.90</p>
+            <p>RM 10.00</p>
+            <h4>RM 84.90</h4>
+        </div>
+    </div>
+</div>
+<div class="placeOrder">
+  <button type="submit">Place Order</button>
+</div>
+
+
+
+  <!--Fotter-->
+  <div class="footer">
+    <div class="left">
+
+        <div class="footer_content">
+            <h6>Category</h6>
+            <div class="fotter_selection">
+                <a href="">Men's Cloth</a>
+                <a href="">Women's Cloth</a>
+            </div>
+        </div>
+
+        <div class="footer_content">
+            <h6>About Us</h6>
+            <div class="fotter_selection">
+                <a href="">Voucher</a>
+                <a href="">Promotion</a>
+            </div>
+        </div>
+
+        <div class="footer_content">
+            <h6>Customer Info</h6>
+            <div class="fotter_selection">
+                <a href="">Wishlist</a>
+                <a href="">Refun & Return</a>
+                <a href="">Customer Service</a>
+                <a href="">Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+          <div class="footer_content">
+            <h6>Payment Method</h6>
+            <div class="fotter_selection">
+                <img src="assignment_image/fpx_image.png" alt="fpx">
+                <img src="assignment_image/visa_image.png" alt="visa">
+                <img src="assignment_image/applyPay_image.png" alt="applepay">
+                  <div class="picture">
+                    <img src="assignment_image/tng_image.png" alt="tng">
+                    <img src="assignment_image/masterCard_image.png" alt="mastercard">
+                    <img src="assignment_image/myBank_image.png" alt="myBank">
+                  </div>
+            </div>
+        </div>
+
+          <div class="footer_content">
+              <h6>Logistics</h6>
+              <div class="fotter_selection">
+                <img src="assignment_image/ninjaVan_image.png" alt="ninjavan">
+                <img src="assignment_image/jtExpress_image.png" alt="JT_Express">
+                <img src="assignment_image/poslaju_image.png" alt="poslaju">
+                  <div class="picture">
+                    <img src="assignment_image/fedex_image.png" alt="fedex">
+                    <img src="assignment_image/dhl_image.png" alt="dhl">
+                  </div>
+              </div>
+          </div>
+        <div class="footer_content">
+            <h6>Follow Us</h6>
+            <div class="fotter_selection">
+                <a href="">Facebook</a>
+                <a href="">Instagram</a>
+                <a href="">Twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
