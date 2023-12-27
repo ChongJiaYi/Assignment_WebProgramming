@@ -4,6 +4,72 @@ include './header_footer/adminPortal.php';
 
 ?>
 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "e_commerce_system";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+function getTableNames($category)
+{
+    $tableNames = array(
+        'product' => $category . "_product",
+        'details' => $category . "_product_details",
+        'specification' => $category . "_product_specification",
+        'description' => $category . "_product_description",
+    );
+
+    return $tableNames;
+}
+
+if (isset($_POST['add'])) {
+    $filename = $_FILES['productImage']['name'];
+
+    if (move_uploaded_file($_FILES["productImage"]["tmp_name"], "imageFile/" . $filename)) {
+
+        $category = $_POST['category'];
+
+        // Insert into product table
+        $productCode = strtoupper(substr($category, 0, 1)) . $_POST['productName'];
+        $tableNames = getTableNames($category);
+
+        $query = "INSERT INTO " . $tableNames['product'] . " (" . strtoupper($category) . "_CODE, PRODUCT_NAME, PRICE, PRODUCT_IMAGE, CATEGORY) VALUES 
+        ('" . $productCode . "', '" . $_POST['productName'] . "', " . $_POST['productPrice'] . ", '" . $filename . "', '" . $category . "')";
+
+        if ($conn->query($query) === true) {
+            // First insert successful, get the last inserted ID (primary key)
+            $productDetailsCode = $conn->insert_id;
+
+            // Insert into details, specification, and description tables
+            $detailsQuery = "INSERT INTO " . $tableNames['details'] . " (" . strtoupper($category) . "_PRODUCT_DETAIL_CODE, " . strtoupper($category) . "_CODE, COLOUR, SIZE) VALUES 
+            ('" . $productDetailsCode . "', '" . $productCode . "', '" . $_POST['productColour'] . "', '" . $_POST['productSize'] . "')";
+
+            $specificationQuery = "INSERT INTO " . $tableNames['specification'] . " (" . strtoupper($category) . "_SPECIFICATION_CODE, " . strtoupper($category) . "_PRODUCT_DETAIL_CODE, SLEEVE_LENGTH, ORIGIN_COUNTRY, OCCASION, MATERIAL) VALUES 
+            ('" . $conn->insert_id . "', '" . $productDetailsCode . "', '" . $_POST['sleeveLength'] . "', '" . $_POST['shipFrom'] . "', '" . $_POST['occasion'] . "', '" . $_POST['material'] . "')";
+
+            $descriptionQuery = "INSERT INTO " . $tableNames['description'] . " (" . strtoupper($category) . "_DESCRIPTION_CODE, " . strtoupper($category) . "_PRODUCT_DETAIL_CODE, LONG_DESCRIPTION, DESCRIPTION_FIRST, DESCRIPTION_SECOND, DESCRIPTION_THIRD, DESCRIPTION_FOURTH) VALUES 
+            ('" . $conn->insert_id . "', '" . $productDetailsCode . "', '" . $_POST['longDescription'] . "', '" . $_POST['description_1'] . "', '" . $_POST['description_2'] . "', '" . $_POST['description_3'] . "', '" . $_POST['description_4'] . "')";
+
+
+            // Execute the queries
+            if ($conn->query($detailsQuery) && $conn->query($specificationQuery) && $conn->query($descriptionQuery)) {
+                echo '<script>alert("Product added successfully!");</script>';
+            } else {
+                echo "Error: " . $conn->error;
+            }
+        } else {
+            echo "Error: " . $conn->error;
+        }
+    } else {
+        echo "Fail to update image.";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
