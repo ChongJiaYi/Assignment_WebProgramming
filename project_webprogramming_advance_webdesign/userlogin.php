@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $loginUsername = $_POST['email']; // Use the correct input name
+    $loginUsername = $_POST['email']; 
     $loginPassword = $_POST['password'];
 
     if (empty($loginUsername) || empty($loginPassword)) {
