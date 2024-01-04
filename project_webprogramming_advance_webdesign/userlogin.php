@@ -1,3 +1,50 @@
+<?php
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $loginUsername = $_POST['email']; // Use the correct input name
+    $loginPassword = $_POST['password'];
+
+    if (empty($loginUsername) || empty($loginPassword)) {
+        echo "Please enter both email and password.";
+    } else {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database_name = "e_commerce_system";
+
+        $conn = new mysqli($servername, $username, $password, $database_name);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $stmt = $conn->prepare("SELECT id, username, password FROM register WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $loginUsername, $loginUsername);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if (password_verify($loginPassword, $row['password'])) {
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['username'] = $row['username'];
+
+                header("Location: homepage.php");
+                exit();
+            } else {
+                echo "Incorrect password";
+            }
+        } else {
+            echo "User not found";
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>

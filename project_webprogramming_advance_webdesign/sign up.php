@@ -11,20 +11,27 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = ($_POST['password']);
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-$sql = "INSERT INTO register (username, email, password) VALUES ('$username', '$email', '$password')";
+    if (empty($username) || empty($email) || empty($password)) {
+        echo "Please fill in all required fields.";
+    } else {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+        $sql = "INSERT INTO register (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
+
+        if ($conn->query($sql) === TRUE) {
+            header("Location: login.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    
+    $conn->close();
 }
-}
-
-$conn->close();
 ?>
 
 <!doctype html>
@@ -190,8 +197,8 @@ $conn->close();
         </div>
 
         <div class="password">
-            <label for="password">Password</label><br>
-            <input type="password" name="password" placeholder="minimum 8 digits">
+            <label for="">Password</label><br>
+            <input type="password" name="" placeholder="minimum 8 digits">
         </div>
 
         <div class="password">
