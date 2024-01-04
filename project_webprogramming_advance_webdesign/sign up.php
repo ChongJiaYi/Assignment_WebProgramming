@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
-    
+
     $conn->close();
 }
 ?>
@@ -211,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" name="email" placeholder="username@gmail.com">
         </div>
 
-        <a href="homepage.html"><button class="signupbutton">Sign Up</button></a>
+        <a href=""><button class="signupbutton">Sign Up</button></a>
 
         <div class="signother">
             <p>Or Sign In With</p>
