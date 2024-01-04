@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO register (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
 
         if ($conn->query($sql) === TRUE) {
-            header("Location: login.php");
+            header("Location: userlogin.php");
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -211,7 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" name="email" placeholder="username@gmail.com">
         </div>
 
-        <a href=""><button class="signupbutton">Sign Up</button></a>
+        <a href="userlogin.php"><button class="signupbutton">Sign Up</button></a>
 
         <div class="signother">
             <p>Or Sign In With</p>
