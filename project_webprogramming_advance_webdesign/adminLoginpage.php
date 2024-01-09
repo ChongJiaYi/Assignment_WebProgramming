@@ -73,7 +73,7 @@ if (isset($_POST['login'])){
                                 <strong>Success!</strong> Your operation was successful.
                             </div>';
 
-                            header('Location: product_management.php');
+                            header('Location: seller_dashboard.php');
                 }
             }
         }
