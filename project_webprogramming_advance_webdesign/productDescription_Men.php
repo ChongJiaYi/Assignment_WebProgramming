@@ -1,13 +1,14 @@
 <?php
 
-require 'prductDescriptions_WomenDB.php';
+require 'productDescription_MenDB.php';
 
 if(isset($_POST["submit"])){
-    $productName=$_POST["women_code"];
+    $productCode=$_POST["men_product_detail_code"];
+    $productName=$_POST["men_code"];
     $colour=$_POST["colour"];
     $size=$_POST["size"];
 
-    $query="INSERT INTO women_product_details VALUES('','$productName','$colour','$size')";
+    $query="INSERT INTO men_product_details VALUES('$productCode','$productName','$colour','$size')";
     mysqli_query($conn,$query);
     echo
     "
@@ -17,7 +18,6 @@ if(isset($_POST["submit"])){
 }
 
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -400,8 +400,8 @@ if(isset($_POST["submit"])){
                 <div class="carousel-inner border">
                     <div class="carousel-item active">
                       <div class="image-container">
-                        <img class="w-100 h-100" src="./dress (3).jpg" alt="Image">
-                        <img src="./dress_hover.jpg" alt="Hover Image" class="hover-image">
+                        <img class="w-100 h-100" src="./men_coat.jpg" alt="Image">
+                        <img src="./men_coat.jpg" alt="Hover Image" class="hover-image">
                       </div>
                         
                     </div>
@@ -414,7 +414,7 @@ if(isset($_POST["submit"])){
     
         <!--Stars Rating-->
         <div class="col-lg-7 pb-5"> 
-            <h3 class="font-weight-semi-bold" id="product_title">Women Sleeveless Strappy Summer Long Dress</h3>
+            <h3 class="font-weight-semi-bold" id="product_title">Men Formal Jeans Dark Blue Blazer</h3>
             <div class="d-flex mb-3">
                 <div class="text-primary mr-2">
                     <small class="fas fa-star"></small>
@@ -433,50 +433,50 @@ if(isset($_POST["submit"])){
             <form action="" method="post" id="user_input_form">
             <div class="d-flex mb-3">
                 <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-            
+                
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_size" name="size">
+                        <input type="radio" class="custom-control-input" id="size" name="size">
                         <label class="custom-control-label" for="size-1">XS</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_size" name="size">
+                        <input type="radio" class="custom-control-input" id="size" name="size">
                         <label class="custom-control-label" for="size-2">S</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_size" name="size">
+                        <input type="radio" class="custom-control-input" id="size" name="size">
                         <label class="custom-control-label" for="size-3">M</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_size" name="size">
+                        <input type="radio" class="custom-control-input" id="size" name="size">
                         <label class="custom-control-label" for="size-4">L</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_size" name="size">
+                        <input type="radio" class="custom-control-input" id="size" name="size">
                         <label class="custom-control-label" for="size-5">XL</label>
                     </div>
-           
+                
             </div>
             <div class="d-flex mb-4">
                 <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
-             
+                
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_color" name="colour">
+                        <input type="radio" class="custom-control-input" id="colour" name="colour">
                         <label class="custom-control-label" for="color-1">Black</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_color" name="colour">
+                        <input type="radio" class="custom-control-input" id="colour" name="colour">
                         <label class="custom-control-label" for="color-2">White</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_color" name="colour">
+                        <input type="radio" class="custom-control-input" id="colour" name="colour">
                         <label class="custom-control-label" for="color-3">Red</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_color" name="colour">
+                        <input type="radio" class="custom-control-input" id="colour" name="colour">
                         <label class="custom-control-label" for="color-4">Blue</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="cloth_radio" name="colour">
+                        <input type="radio" class="custom-control-input" id="colour" name="colour">
                         <label class="custom-control-label" for="color-5">Green</label>
                     </div>
                 
@@ -488,7 +488,7 @@ if(isset($_POST["submit"])){
                           <i class="fa fa-minus"></i>
                           </button>
                       </div>
-                      <input type="text" class="form-control text-center" name="women_code" value="1">
+                      <input type="text" class="form-control text-center" id="men_code" name="men_code" value="1">
                       <div class="input-group-btn">
                           <button class="btn btn-primary btn-plus">
                               <i class="fa fa-plus"></i>
@@ -497,13 +497,12 @@ if(isset($_POST["submit"])){
                 </div>
             </div>  
             <button type="submit" class="btn btn-primary px-3" id="button">
-             <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
-             </button>
+                <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+            </button>
             <a href="checkOut.html"><button class="btn btn-primary px-3" id="button"><i class="fa fa-shopping-cart mr-1"></i> Buy Now</button></a>
-           
-
-        </div>
+            
         </form>
+        </div>
     </div>
   </div>
 
@@ -519,8 +518,8 @@ if(isset($_POST["submit"])){
             <p>Material</p>
           </div>
           <div class="description_text">
-            <p>Women</p>
-            <p>Tank</p>
+            <p>Men</p>
+            <p>Blazar</p>
             <p>Malaysia</p>
             <p>Casual</p>
             <p>Linen</p>
