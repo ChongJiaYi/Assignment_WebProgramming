@@ -1,3 +1,14 @@
+<?php
+    include "connectDB.php";
+    $sql = "SELECT * FROM women_product";
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        die("Invalid" . $conn->error);
+    }
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -279,11 +290,11 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-                <a href="userProfile.html">My Profile</a>
-                <a href="voucher.html">My Voucher</a>
-                <a href="orderhistory.html">Order History</a>
-                <a href="review.html">My Review</a>
-                <a href="wishlist.html">Wishlist</a>
+                <a href="userProfile.php">My Profile</a>
+                <a href="voucher.php">My Voucher</a>
+                <a href="orderhistory.php">Order History</a>
+                <a href="review.php">My Review</a>
+                <a href="wishlist.php">Wishlist</a>
             </div>
 
             <div class="icons">
@@ -295,11 +306,11 @@
         <div class="menu">
             <a onclick="myFunction()" class="dropbtn"><i class="fa-solid fa-bars" style="color: #000000;"></i></a>
             <div id="myDropdown" class="dropdown-content">
-                <a href="userProfile.html">My Profile</a>
-                <a href="voucher.html">My Voucher</a>
-                <a href="orderhistory.html">Order History</a>
-                <a href="review.html">My Review</a>
-                <a href="wishlist.html">Wishlist</a>
+                <a href="userProfile.php">My Profile</a>
+                <a href="voucher.php">My Voucher</a>
+                <a href="orderhistory.php">Order History</a>
+                <a href="review.php">My Review</a>
+                <a href="wishlist.php">Wishlist</a>
             </div>
         </div>
     </div>
@@ -324,8 +335,8 @@
     <div class="all_part_left">
         <div class="Categories">
               <h4>Categories</h4>
-              <a href="productDetails_Women.html">Female Cloth</a><br>
-              <a href="productDetails_Men.html">Male Cloth</a>
+              <a href="productDetails_Women.php">Female Cloth</a><br>
+              <a href="productDetails_Men.php">Male Cloth</a>
         </div>
 
         <div class="title">
@@ -350,105 +361,39 @@
 
   <!--Main Content-->
   <div class="main_content">
-    <div class="row px-xl-5" style="margin: auto;">
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <form action="search_results.php" method="post">
-                  <input type="hidden" name="women_product_detail_code" value="your_product_detail_code_1">
-                  <input type="hidden" name="women_code" value="your_women_code_1">
-                  <input type="hidden" name="colour" value="your_colour_1">
-                  <input type="hidden" name="size" value="your_size_1">
-          <div class="card product-item border-0 mb-4">
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                  <img class="img-fluid w-100" id="product_image" src="./dress (3).jpg" alt="">
-              </div>
-              <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                  <h6 style="height: 40px;">Women Sleeveless Strappy Summer Long Dress</h6>
-                  <div class="d-flex justify-content-center">
-                      <h6>RM50.00</h6>
-                  </div>
-              </div>
-              <div class="card-footer d-flex justify-content-between bg-light border">
-                  <a href="productDescriptions_Women_1.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                  <a href="shopping_cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                  <button type="submit" class="btn btn-sm text-dark p-0">Submit</button>
-              </div>
-          </div>
-</form>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-        <form action="search_results.php" method="post">
-                    <input type="hidden" name="women_product_detail_code" value="your_product_detail_code_2">
-                    <input type="hidden" name="women_code" value="your_women_code_2">
-                    <input type="hidden" name="colour" value="your_colour_2">
-                    <input type="hidden" name="size" value="your_size_2">
-          <div class="card product-item border-0 mb-4">
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                  <img class="img-fluid w-100" id="product_image" src="./dress.jpg" alt="">
-              </div>
-              <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                  <h6 style="height: 40px;">Women Solid Butterfly Sleeve Belted Dress</h6>
-                  <div class="d-flex justify-content-center">
-                      <h6>RM50.00</h6>
-                  </div>
-              </div>
-              <div class="card-footer d-flex justify-content-between bg-light border">
-                  <a href="productDescriptions_Women_1.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                  <a href="shopping_cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                  <button type="submit" class="btn btn-sm text-dark p-0">Submit</button>
-              </div>
-          </div>
-</form>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-      <form action="search_results.php" method="post">
-                    <input type="hidden" name="women_product_detail_code" value="your_product_detail_code_2">
-                    <input type="hidden" name="women_code" value="your_women_code_2">
-                    <input type="hidden" name="colour" value="your_colour_2">
-                    <input type="hidden" name="size" value="your_size_2">
-          <div class="card product-item border-0 mb-4">
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                  <img class="img-fluid w-100" id="product_image" src="./coat.jpg" alt="">
-              </div>
-              <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                  <h6 style="height: 40px;">Casual Plain Button Blazer</h6>
-                  <div class="d-flex justify-content-center">
-                      <h6>RM70.00</h6>
-                  </div>
-              </div>
-              <div class="card-footer d-flex justify-content-between bg-light border">
-                  <a href="productDescriptions_Women_1.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                  <a href="shopping_cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                  <button type="submit" class="btn btn-sm text-dark p-0">Submit</button>
-              </div>
-          </div>
-          </form>
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
-      <form action="search_results.php" method="post">
-                    <input type="hidden" name="women_product_detail_code" value="your_product_detail_code_2">
-                    <input type="hidden" name="women_code" value="your_women_code_2">
-                    <input type="hidden" name="colour" value="your_colour_2">
-                    <input type="hidden" name="size" value="your_size_2">
-          <div class="card product-item border-0 mb-4">
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                  <img class="img-fluid w-100" id="product_image" src="./cardigan.jpg" alt="">
-              </div>
-              <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                  <h6 style="height: 40px;">Women Button Pattern Cardigan</h6>
-                  <div class="d-flex justify-content-center">
-                      <h6>RM45.90</h6>
-                  </div>
-              </div>
-              <div class="card-footer d-flex justify-content-between bg-light border">
-                  <a href="productDescriptions_Women_1.html" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                  <a href="shopping_cart.html" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>  
-                  <button type="submit" class="btn btn-sm text-dark p-0">Submit</button>
-              </div>
-          </div>
-          </form>
-      </div>
+        <div class="row px-xl-5" style="margin: auto;">
+            <?php
+
+            
+            // Loop through the fetched data and generate HTML for each product
+            while ($row = $result->fetch_assoc()) {
+            ?>
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <form action="" method="post">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" id="product_image" src="./<?php echo $row['PRODUCT_IMAGE']; ?>" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 style="height: 40px;"><?php echo $row['PRODUCT_NAME']; ?></h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>RM<?php echo $row['PRICE']; ?></h6>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                        
+                                <a href="productDescription_Women_1.php" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <a href="shopping_cart.php" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <input type="hidden" name="product_id" value="<?php echo $row['WOMEN_CODE']; ?>">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
     </div>
-  </div>
 
 
 
@@ -458,20 +403,20 @@
         <div class="left_content">
             <div class="content">
                 <p>Category</p>
-                <a href="productDetails_Men.html">Men's Cloth</a>
-                <a href="productDetails_Women.html">Women's Cloth</a>
+                <a href="productDetails_Men.php">Men's Cloth</a>
+                <a href="productDetails_Women.php">Women's Cloth</a>
             </div>
 
             <div class="content">
                 <p>About Store</p>
-                <a href="voucher.html">Voucher</a>
+                <a href="voucher.php">Voucher</a>
                 <a href="">Promotion</a>
             </div>
 
             <div class="content">
                 <p>Customer Info</p>
-                <a href="wishlist.html">Wishlist</a>
-                <a href="return.html">Return & Refund</a>
+                <a href="wishlist.php">Wishlist</a>
+                <a href="return.php">Return & Refund</a>
                 <a href="">Customer Service</a>
             </div>
         </div>

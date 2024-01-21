@@ -1,23 +1,26 @@
 <?php
-
 require 'prductDescriptions_WomenDB.php';
 
-if(isset($_POST["submit"])){
-    $productName=$_POST["women_code"];
-    $colour=$_POST["colour"];
-    $size=$_POST["size"];
-
-    $query="INSERT INTO women_product_details VALUES('','$productName','$colour','$size')";
-    mysqli_query($conn,$query);
-    echo
-    "
-    <script> alert('Data Inserted Successfully') </script>
-    ";
-
+if (isset($_POST["submit"])) {
+    $productName = $_POST["women_code"];
+    $colour = $_POST["colour"];
+    $size = $_POST["size"];
+    
+    // Check the value of the action field
+    $action = $_POST['action'];
+    
+    if ($action == 'addToCart') {
+        // Perform Add To Cart action
+        $query = "INSERT INTO women_product_details VALUES('', '$productName', '$colour', '$size')";
+        mysqli_query($conn, $query);
+        echo "<script> alert('Added to Cart Successfully') </script>";
+    } elseif ($action == 'buyNow') {
+        // Perform Buy Now action
+        header('Location: checkOut.php');
+        exit;
+    }
 }
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -430,7 +433,7 @@ if(isset($_POST["submit"])){
             <h6>Shipping Fee: Free Shipping</h6>
             <h6>Protection: Damage Protection</h6>
 
-            <form action="" method="post" id="user_input_form">
+            <form action="shopping_cart.php" method="post" id="user_input_form">
             <div class="d-flex mb-3">
                 <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
             
