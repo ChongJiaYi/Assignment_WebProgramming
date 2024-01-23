@@ -1,5 +1,4 @@
 <?php
-include 'index_register.php';
 session_start();
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
 unset($_SESSION['errors']);
@@ -157,7 +156,7 @@ unset($_SESSION['errors']);
 </head>
 
 <body>
-    <form action="userlogin.php">
+    <form action="userlogin.php" method="post">
         <div class="signup">
             <div class="signuptext">
                 <h3>SIGN UP</h3>
@@ -165,30 +164,30 @@ unset($_SESSION['errors']);
             
             <div class="username">
                 <label for="username">Username</label><br>
-                <input type="text" name="username" placeholder="username">
+                <input type="text" name="username" id="username" placeholder="username" required>
             </div>
 
             <div class="password">
                 <label for="password">Password</label><br>
-                <input type="password" name="password" placeholder="minimum 8 digits">
+                <input type="password" name="password" id="password" placeholder="minimum 8 digits" required>
             </div>
 
             <div class="password">
-                <label for="">Confirm Password</label><br>
-                <input type="password" name="" placeholder="re-enter your password">
+                <label for="repeatpassword">Confirm Password</label><br>
+                <input type="password" name="repeatpassword" id="repeatpassword" placeholder="re-enter your password" required>
             </div>
 
             <div class="email">
                 <label for="email">Email</label><br>
-                <input type="email" name="email" placeholder="username@gmail.com">
+                <input type="email" name="email" id="email" placeholder="username@gmail.com" required>
             </div>
 
-            <button class="signupbutton">Sign Up</button></a>
+            <button class="signupbutton">Sign Up</button>
 
             <div class="signother">
                 <p>Or Sign In With</p>
-                <a href="www.google.com"><img src="img/google.png"></a>
-                <a href="www.facebook.com"><img src="img/facebook.png"></a>
+                <a href="https://www.google.com"><img src="img/google.png"></a>
+                <a href="https://www.facebook.com"><img src="img/facebook.png"></a>
             </div>
         </div>
     </form>

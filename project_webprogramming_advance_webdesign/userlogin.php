@@ -1,49 +1,43 @@
 <?php
 session_start();
+$error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $loginUsername = $_POST['email']; 
-    $loginPassword = $_POST['password'];
+    include 'connectDB.php';
 
-    if (empty($loginUsername) || empty($loginPassword)) {
-        echo "Please enter both email and password.";
-    } else {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database_name = "e_commerce_system";
+    $username = $_POST['email'];
+    $password = $_POST['password'];
 
-        $conn = new mysqli($servername, $username, $password, $database_name);
+    $stmt = $conn->prepare("SELECT register_id, password FROM register WHERE username = ?");
+    $stmt->bind_param("s", $username);
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    $stmt->execute();
 
-        $stmt = $conn->prepare("SELECT id, username, password FROM register WHERE username = ? OR email = ?");
-        $stmt->bind_param("ss", $loginUsername, $loginUsername);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            if (password_verify($loginPassword, $row['password'])) {
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['username'] = $row['username'];
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
 
-                header("Location: homepage.php");
-                exit();
-            } else {
-                echo "Incorrect password";
-            }
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['register_id'] = $row['register_id'];
+            header("Location: homepage.php");
+            exit();
         } else {
-            echo "User not found";
+            $error = "Wrong username or password";
         }
-
-        $stmt->close();
-        $conn->close();
+    } else {
+        $error = "Wrong username or password";
     }
+
+    $_SESSION['error'] = $error;
+    header("Location: userlogin.php");
+    exit();
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -190,30 +184,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="login">
-        <div class="logintext">
-            <h3>WELCOME</h3>
+    <form action="userlogin.php" method="post">
+        <div class="login">
+            <div class="logintext">
+                <h3>WELCOME</h3>
+            </div>
+
+            <img class="loginpic" src="img/loginpic.png">
+
+            <div class="email">
+                <label for="email">Email Address</label><br>
+                <input type="email" name="email" id="email" placeholder="username@gmail.com" required>
+            </div>
+
+            <div class="password">
+                <label for="password">Password</label><br>
+                <input type="password" name="password" id="password" placeholder="password" required>
+            </div>
+
+            <button class="loginbutton">Login</button>
+
+            <div class="loginfooter">
+                <span><a href="register.php">Sign Up</a></span>
+                <span><a href="forgot password.html">Forgot Password?</a></span>
+            </div>
         </div>
-
-        <img class="loginpic" src="img/loginpic.png">
-
-        <div class="email">
-            <label for="email">Email Address</label><br>
-            <input type="email" name="email" placeholder="username@gmail.com">
-        </div>
-
-        <div class="password">
-            <label for="password">Password</label><br>
-            <input type="password" name="password" placeholder="********">
-        </div>
-
-        <a href="homepage.html"><button class="loginbutton">Login</button></a>
-
-        <div class="loginfooter">
-            <span><a href="sign up.html">Sign Up</a></span>
-            <span><a href="forgot password.html">Forgot Password?</a></span>
-        </div>
-    </div>
+    </form>
 
     <div class="footer">
         <div class="category">
@@ -224,16 +220,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="aboutstore">
             <h6 class="heading">About Store</h6>
-            <a href="voucher.html">Voucher</a><br>
+            <a href="">Voucher</a><br>
             <a href="">Promotion</a>
         </div>
 
         <div class="customerinfo">
             <h6 class="heading">Customer Info</h6>
-            <a href="wishlist.html">Wishlist</a><br>
-            <a href="return.html">Refund & Return</a><br>
-            <a href="chat.html">Customer Service</a><br>
-            <a href="chat.html">Contact Us</a>
+            <a href="">Wishlist</a><br>
+            <a href="">Refund & Return</a><br>
+            <a href="">Customer Service</a><br>
+            <a href="">Contact Us</a>
         </div>
 
         <div class="followus">

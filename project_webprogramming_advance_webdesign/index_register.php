@@ -27,10 +27,9 @@ function validatePassword($password)
     return $errors;
 }
 
-function verify($username, $password, $email)
+function verify($username, $password, $email, $repeatpassword)
 {
-    $errors = []; 
-
+    $errors = [];
     if (empty($username) || empty($password) || empty($email)) {
         $errors[] = "Please fill in all fields.";
     }
@@ -46,17 +45,17 @@ function verify($username, $password, $email)
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Please enter a valid email address.";
     }
-
-    return $errors; 
+    return $errors;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
+    $repeatpassword = $_POST['repeatpassword'];
 
     $passwordErrors = validatePassword($password);
-    $inputErrors = verify($username, $password, $email);
+    $inputErrors = verify($username, $password, $email, $repeatpassword);
     $errors = array_merge($passwordErrors, $inputErrors);
 
     if (empty($errors)) {
@@ -67,30 +66,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $checkStmt->store_result();
 
         if ($checkStmt->num_rows > 0) {
-            $errors[] = "Username already exists. Please choose a different username.";
-            $_SESSION['errors'] = $errors;
-            header('Location: register.php');
-            exit();
+            $errors[] = "Username already exists. Please use a different username.";
+        } else {
+            $checkStmt->close();
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $insert = "INSERT INTO register (username, password, email) VALUES (?, ?, ?)";
+            $stm = $conn->prepare($insert);
+            $stm->bind_param("sss", $username, $hashedPassword, $email);
+
+            if ($stm->execute()) {
+                echo "<script>alert('Register Successful!'); window.location.href = 'userlogin.php'</script>";
+                exit();
+            } else {
+                $errors[] = "Registration failed. Please try again.";
+            }
+
+            $stm->close();
         }
-
-        $checkStmt->close();
-
-        $insert = "INSERT INTO register(username, password, email) VALUES (?, ?, ?, ?)";
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
-        $stm = $conn->prepare($insert);
-        $stm->bind_param("ssss", $username, $hashedPassword, $email, $contactnumber);
-
-        if ($stm->execute()) {
-            echo "<script>alert('Register Successful!'); window.location.href = 'userlogin.php'</script>";
-            exit();
-        }
-
-        $stm->close();
-    } else {
-        $_SESSION['errors'] = $errors;
-        header('Location: register.php');
-        exit();
     }
+
+    $_SESSION['errors'] = $errors;
+    header('Location: register.php');
+    exit();
 
     $conn->close();
 } else {
