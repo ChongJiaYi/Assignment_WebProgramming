@@ -1,323 +1,363 @@
+<?php
+include './header_footer/header.php';
+?>
 
-    
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <!--Icon-->
+    <title>Home Page</title>
+    
+    <!--Icone link-->
     <script src="https://kit.fontawesome.com/722e303770.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-     <!--FontFamily-->
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+    
+    <!--FontFamily-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Slabo+27px:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro:wght@400;700&display=swap">
-
-    <link rel="stylesheet" href="homepage.css">
-</head>
-<style>
-    body {
-        background-color: #FFF2F2;
-        margin: 0;
-    }
-
-    .Header {
-        background-color: #E5E0FF;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 20px 5px 20px;
-    }
-
-    .right_content {
-        display: flex;
-    }
-
-    .form-inline {
-        display: flex;
-        align-items: center;
-    }
-
-    .form-control {
-        width: 400px;
-        background-color: #7286D3;
-        border-radius: 20px 0 0 20px;
-        /* Rounded left corners */
-    }
-
-    .search_bar button {
-        background-color: #7286D3;
-        border-radius: 0 20px 20px 0;
-        /* Rounded right corners */
-        margin-left: -2px;
-        font-size: 15px;
-    }
-
-    .left_content a,
-    .icons a {
-        font-size: 35px;
-    }
-
-    .search_bar {
-        margin-right: 100px;
-    }
-
-    .search_bar a {
-        font-size: 12px;
-        color: #000000;
-        text-decoration: none;
-        padding: 10px;
-    }
-
-    #search_btn {
-        background-color: #7286D3;
-    }
-
-    .icons a {
-        margin-right: 50px;
-    }
-
-    /* Dropdown Content */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #E5E0FF;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .menu:hover .dropdown-content {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .menu {
-        display: none;
-    }
-
-    .paymentMethod img , .logisticPartner img{
-        width: 50px;
-        height: 30px;
-        background-color: white;
-        margin-bottom: 10px;
-    }
-
-    .footer{
-        background-color: #7286D3;
-    }
-
-    .box{
-        display: flex;
-        justify-content: space-between;
-        padding: 20px;
-    }
-
-    .left_content, .right_content{
-        display: flex;
-    }
-
-    .content a{
-        display: block;
-        color: black;
-        text-decoration: none;
-        font-size: 13px;
-        padding-bottom: 10px;
-    }
-
-    .content p, .paymentMethod p, .logisticPartner p{
-        font-size: 15px;
-        font-family: monospace;
-        text-decoration: underline;
-    }
-
-    #term_content{
-        background-color: #7286D3;
-        text-align: center;
-        font-family: 'Salsa', cursive;
-        font-size: 12px;
-        padding-bottom: 20px;
-    }
-
-    #special{
-        margin-left: 50px;
-        margin-right: 50px;
-    }
-
-    .content, .paymentMethod, .logisticPartner{
-        margin: 20px;
-    }
-
-
-
-    /* mobile size */
-    @media only screen and (max-width: 600px) {
-        .right_content {
-            display: none;
+    
+    <style>
+        body{
+            background-color:#FFF2F2;
         }
 
-        .left_content a {
-            font-size: 25px;
+        .form-control {
+            width: 400px;
+            background-color: #7286D3;
+            border-radius: 20px 0 0 20px;
+            /* Rounded left corners */
         }
 
-        .menu {
-            float: right;
-            overflow: hidden;
-            display: block;
+        .d-block{
+            width: auto;
+            height: 660px;
         }
 
-        .menu i{
-            font-size: 25px;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            z-index: 1;
-            flex-direction: column;
-            width: 100%;
-            top: 60px;
-            left: 0px;
-        }
-
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
+        #carousel-caption1{
             text-align: left;
         }
 
-        .show {
-        display: block;
+        #carousel-caption1 p{
+            width:450px;
+        }
+
+        #carousel-caption2{
+            text-align: right;
+            color: #000000;
+        }
+
+        #carousel-caption2 p{
+            margin-left: 400px;
+        }
+
+        .carousel-caption{
+            justify-content: center;
+            align-items: center;
+            height: 70%;
+        }
+
+        .carousel-caption button, .card-body button{
+            background-color: #313339;
+            height: 40px;
+            width: 100px;
+            border: 0px;
+            border-radius: 10px;
+            font-family:'Slabo', serif;
+            color: white;
+        }
+
+        .carousel-caption h5{
+            font-size: 70px;
+            font-family:'Slabo', serif;
         }
 
 
-        .paymentMethod,.logisticPartner {
-            display: none;
+        .content_1{
+            display: flex;
+            padding-bottom: 50px;
         }
-        
 
-    }
-</style>
+        .card{
+            margin: 50px;
+        }
 
-<body>
-    <div class="Header">
-        <div class="left_content">
-            <a href=""><i class="fa-solid fa-house" style="color: #000000;"></i></a>
-        </div>
+        .card-img-top{
+            width:auto;
+            height:300px;
+        }
 
-        <div class="right_content">
-            <div class="search_bar">
-                <form action="" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn my-2 my-sm-0" type="submit" id="search_btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-                <a href="userProfile.php">My Profile</a>
-                <a href="voucher.php">My Voucher</a>
-                <a href="orderhistory.php">Order History</a>
-                <a href="review.php">My Review</a>
-                <a href="wishlist.php">Wishlist</a>
+        .voucher{
+            display: flex;
+            background-color: black;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .col{
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .vertical_line{
+            border: 1px solid rgba(255, 255, 255);
+            height: 100px;
+        }
+
+
+
+        .flashsale_body{
+            width: 100%;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .flashsale_image img{
+            width: auto;
+            height: 400px;
+            margin-top: 50px;
+        }
+
+        .flashsale_text{
+            margin-top: 160px;
+        }
+
+        .flashsale_text h2 {
+            padding-bottom:20px ;
+            font-family: "Montserrat", sans-serif;
+            color: #8584849d;
+        }
+
+        #flashsale_text{
+            font-family: "Montserrat", sans-serif;
+            font-size: 35px;
+            padding-bottom: 20px;
+            color: #000000;
+        }
+
+        .flashsale_countdown{
+            margin-top: 100px;
+        }
+
+        .flashsale_countdown h5{
+            color: rgb(250, 95, 95);
+            font-family: "Montserrat", sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .flashsale_countdown h2{
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .flashsale_countdown button{
+            background-color: #000000;
+            height: 40px;
+            width: 120px;
+            border: 0px;
+            font-family:'Slabo', serif;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .flashsale_timer{
+            display: flex;
+        }
+
+        .cd-item {
+            flex-basis: 150px;
+        }
+
+        .cd-item span{
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-family: 'Kdam Thmor Pro', sans-serif;
+        }
+
+        .cd-item p{
+            font-size: 15px;
+        }
+
+        /* mobile size*/
+        @media only screen and (max-width: 600px){
+
+            .d-block{
+                width: auto;
+                height: auto;
+            }
+
+            #carousel-caption1{
+                text-align: left;
+            }
+
+            #carousel-caption1 p{
+                font-size: 12px;
+                width:150px;
+            }
+
+            #carousel-caption2{
+                text-align: right;
+                color: #000000;
+            }
+
+            #carousel-caption2 p{
+                margin-left: 200px;
+                font-size: 12px;
+                width: 150px;
+            }
+
+            .carousel-caption{
+                justify-content: center;
+                align-items: center;
+                height: 80%;
+            }
+
+            .carousel-caption button, .card-body button{
+                height: 30px;
+                width: 80px;
+                font-size:12px;
+            }
+
+            .carousel-caption h5{
+                font-size: 25px;
+                font-family:'Slabo', serif;
+            }
+
+            
+
+            .content_1{
+                display: block;
+                padding-bottom: 20px;
+            }
+
+            .card-img-top{
+                width:auto;
+                height:220px;
+            }
+
+            #voucher_hidden{
+                display: none;
+            }
+
+            .flashsale_body{
+                height: 700px;
+            }
+
+            .flashsale_text h2 {
+                margin-left: 30px;
+                font-size: 25px;
+                margin-bottom: 10px;
+            }
+
+            .flashsale_image {
+                text-align: center;
+            }
+
+            .flashsale_image img {
+                width: auto;
+                height: 300px; 
+                margin-top: -280px;
+                margin-left: 200px;
+            }
+
+            .flashsale_countdown {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .flashsale_countdown h5 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .flashsale_countdown h2 {
+                font-size: 25px;
+                margin-bottom: 10px;
+            }
+
+            .flashsale_countdown button {
+                height: 30px;
+                width: 100px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="landing_page">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
             </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assignment_image/landingpage (1).jpg" class="d-block w-100" alt="landingpage1">
+                    <div class="carousel-caption" id="carousel-caption1">
+                        <h5>Hight Fashion</h5>
+                        <p>We believe fit and fashion go hand to hand; our expertly-crafted garments make zero copromises. 
+                            Let's find more good stuff together!
+                        </p>
+                        <a href="../project_webprogramming_advance_webdesign/productDetails_Women.html">
+                            <button type="button">Shop Now</button>
+                        </a>
+                    </div>
+                </div>
 
-            <div class="icons">
-                <a href=""><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                <a href=""><i class="fa-regular fa-circle-user" style="color: #000000;"></i></a>
+                <div class="carousel-item">
+                    <img src="assignment_image/landingpage (3).jpg" class="d-block w-100" alt="landingpage3">
+                    <div class="carousel-caption" id="carousel-caption2">
+                        <h5>Winter Collection</h5>
+                        <p>Combine the winter style we will have.Refresh your style with on-trend piesces from our clothing collection.</p>
+                        <a href="../project_webprogramming_advance_webdesign/productDetails_Men.html">
+                            <button type="button">Shop Now</button>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="menu">
-            <a onclick="myFunction()" class="dropbtn"><i class="fa-solid fa-bars" style="color: #000000;"></i></a>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="userProfile.php">My Profile</a>
-                <a href="voucher.php">My Voucher</a>
-                <a href="orderhistory.php">Order History</a>
-                <a href="review.php">My Review</a>
-                <a href="wishlist.php">Wishlist</a>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 
-    <script>
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
+    <!--Category-->
+        <div class="home_page_category">
+            <div class="content_1" >
+                <div class="card text-center mb-3">
+                    <img src="assignment_image/landingpage (6).jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Women Fashion</h5>
+                        <a href="../project_webprogramming_advance_webdesign/productDetails_Women.html">
+                            <button type="button">View More</button>
+                        </a>
+                    </div>
+                </div>
 
-        window.onclick = function(e) {
-            if (!e.target.matches('.dropbtn')) {
-            var myDropdown = document.getElementById("myDropdown");
-                if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-                }
-            }
-    }
-    </script>
-
-    <div id="carouselExampleCaptions" class="carousel slide">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="./landingpage (1).jpg" class="d-block w-100" alt="landingpage1">
-            <div class="carousel-caption d-none d-md-block" id="carousel-caption1">
-              <h5>Hight Fashion</h5>
-              <p style="width: 450px;">We believe fit and fashion go hand to hand; our expertly-crafted garments make zero copromises. We
-                are so glad you've find us. Let's find more good stuff together!
-              </p>
-              <button class="btn btn-primary" onclick="window.location.href = 'productDetails_Women.php'">Shop Now</button>
+                <div class="card text-center mb-3">
+                    <img src="assignment_image/landingpage (5).jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Men Fashion</h5>
+                        <a href="../project_webprogramming_advance_webdesign/productDetails_Men.html">
+                            <button type="button">View More</button>
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <img src="./landingpage (3).jpg" class="d-block w-100" alt="landingpage3">
-            <div class="carousel-caption d-none d-md-block" id="carousel-caption2">
-              <h5>Winter Collection</h5>
-              <p style="width: 450px;">Combine the winter style we will have.Refresh your style with on-trend piesces from our clothing collection.</p>
-              <a href="productDetails_Men.php">
-              <button class="btn btn-primary" onclick="window.location.href = 'productDetails_Men.php'">Shop Now</button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
-      <!--Category-->
-      <div class="content_1" style="justify-content: center; margin-bottom: 30px;">
-        <div class="card text-center mb-3" style="width:40%; margin: 20px;">
-          <img src="./landingpage (6).jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Women Fashion</h5>
-            <button class="btn btn-primary" onclick="window.location.href = 'productDetails_Women.php'">Shop Now</button>
-          </div>
         </div>
 
-        <div class="card text-center mb-3" style="width:40%; margin: 20px;">
-          <img src="./landingpage (5).jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Men Fashion</h5>
-            <button class="btn btn-primary" onclick="window.location.href = 'productDetails_Men.php'">Shop Now</button>
-          </div>
-        </div>
-      </div>
-
-      <!--Voucher-->
+    <!--Voucher display-->
+    <div class="voucher_display">
       <div class="vouvher_information">
           <div class="voucher">
               <div class="col">
@@ -332,22 +372,23 @@
               </div>
               <div class="vertical_line"></div>
 
-              <div class="col">
+              <div class="col" id="voucher_hidden">
                   <h4>20% OFF</h4>
                   <p>ON ORDER OF RM200</p>
               </div>
-            <div class="vertical_line"></div>
+            <div class="vertical_line" id="voucher_hidden"></div>
 
-              <div class="col">
+              <div class="col" id="voucher_hidden">
                   <h4>30% OFF</h4>
                   <p>ON ORDER OF RM350</p>
               </div>
           </div>
       </div>
+    </div>
 
-      <!--daily fresh-->
-      <div class="categories spad">
-          <div class="container">
+    <!--daily fresh-->
+    <div class="flashsale_body spad">
+            <div class="container">
               <div class="row">
                   <div class="col-lg-3">
                       <div class="flashsale_text">
@@ -356,33 +397,37 @@
                           <h2>Accessories</h2>
                       </div>
                   </div>
+
                   <div class="col-lg-4">
                       <div class="flashsale_image">
-                          <img src="./flashsale_copy.jpg" alt="pink sweater">
+                          <img src="assignment_image/flashsale_copy.jpg" alt="pink sweater">
                           <div class="flashsale_pricelabel">
                               <h5></h5>
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-5">
-                      <div class="flashsale_countdown">
-                          <h5>DEAL OF THE MONTH</h5>
-                          <h2>Winter Session Unisex Pink Sweater</h2>
-                          <div class="flashsale_timer" id="timer">
+
+                    <div class="col-lg-5">
+                        <div class="flashsale_countdown">
+                            <h5>DEAL OF THE MONTH</h5>
+                            <h2>Winter Session Unisex Pink Sweater</h2>
+                            <div class="flashsale_timer" id="timer">
                                 <div class="cd-item" ><span id="days">00</span> <p>Days</p> </div>
                                 <div class="cd-item" ><span id="hours">00</span> <p>Hours</p> </div>
                                 <div class="cd-item" ><span id="minutes">00</span> <p>Minutes</p> </div>
                                 <div class="cd-item" ><span id="seconds">00</span> <p>Seconds</p> </div>
-                          </div>
-                          <button class="btn btn-primary" onclick="window.location.href = 'productDetails_Men.php'">Shop Now</button>
-                      </div>
-                  </div>
+                            </div>
+                            <a href="../project_webprogramming_advance_webdesign/productDetails_Men.html">
+                                <button type="button">Shop Now</button>
+                            </a>
+                        </div>
+                    </div>
               </div>
-          </div>
-      </div>
+            </div>
+    </div>
 
-        <!--countdown timer-->
-        <script>
+      <!--countdown timer-->
+      <script>
           const countdown = new Date("March 1 , 2024 00:00:00").getTime();
           const x = setInterval(function(){
                 const currentDateTime = new Date().getTime();
@@ -404,71 +449,12 @@
               }
       </script>
 
-<div class="footer">
-    <div class="box">
-        <div class="left_content">
-            <div class="content">
-                <p>Category</p>
-                <a href="productDetails_Men.php">Men's Cloth</a>
-                <a href="productDetails_Women.php">Women's Cloth</a>
-            </div>
-
-            <div class="content">
-                <p>About Store</p>
-                <a href="voucher.php">Voucher</a>
-                <a href="">Promotion</a>
-            </div>
-
-            <div class="content">
-                <p>Customer Info</p>
-                <a href="wishlist.php">Wishlist</a>
-                <a href="return.php">Return & Refund</a>
-                <a href="">Customer Service</a>
-            </div>
-        </div>
-
-        <div class="right_content">
-            <div class="paymentMethod">
-                <p>Payment Method</p>
-                <img src="./fpx_image.png" alt="fpx">
-                <img src="./visa_image.png" alt="visa">
-                <img src="./applyPay_image.png" alt="applepay">
-
-                <div class="paymentMethod_special">
-                    <img src="./tng_image.png" alt="tng">
-                    <img src="./masterCard_image.png" alt="mastercard">
-                    <img src="./myBank_image.png" >
-                </div>
-            </div>
-
-            <div class="logisticPartner">
-                <p>Logistics Partner</p>
-                    <img src="./ninjaVan_image.png" alt="ninjavan">
-                    <img src="./jtExpress_image.png" alt="JT_Express">
-                    <img src="./poslaju_image.png" alt="poslaju">
-
-                <div class="logisticPartner_special">
-                        <img src="./fedex_image.png" alt="fedex">
-                        <img src="./dhl_image.png" alt="dhl">
-                </div>
-            </div>
-
-            <div class="content">
-                <p>Follow Us</p>
-                <a href="">Facebook</a>
-                <a href="">Instagram</a>
-                <a href="">Youtube</a>
-            </div>
-        </div>
-    </div>
-    <hr id="special">
-    <p id="term_content">Copyright 2023. Sunny Shop Mobile Malaysia Sdn. Bhd. [201501009497 (1134832-W)]. All Rights Reserved.</p>
-</div>
-
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
+
+
+<?php
+include './header_footer/footer.php';
+?>
