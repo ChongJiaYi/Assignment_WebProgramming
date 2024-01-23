@@ -1,13 +1,114 @@
 <?php
+session_start();
+$errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
+unset($_SESSION['errors']);
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database_name = "e_commerce_system";
 
-$conn = new mysqli($servername, $username, $password, $database_name);
+$conn = mysqli_connect ($servername, $username, $password, $database_name);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+function validatePassword($password)
+{
+    $errors = [];
+    if (strlen($password) < 8) {
+        $errors[] = "Password length must be at least 8 characters.";
+    }
+
+    if (!preg_match('/[a-z]/', $password)) {
+        $errors[] = "Password should contain at least one lowercase letter.";
+    }
+
+    if (!preg_match('/[A-Z]/', $password)) {
+        $errors[] = "Password should contain at least one uppercase letter.";
+    }
+
+    if (!preg_match('/\d/', $password)) {
+        $errors[] = "Password should contain at least one number.";
+    }
+
+    if (!preg_match('/[^a-zA-Z\d]/', $password)) {
+        $errors[] = "Password should contain at least one special character.";
+    }
+    return $errors;
+}
+
+function verify($username, $password, $email)
+{
+    $errors = []; 
+
+    if (empty($username) || empty($password) || empty($email)) {
+        $errors[] = "Please fill in all fields.";
+    }
+
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        $errors[] = "Username can only contain letters and numbers.";
+    }
+
+    if ($password !== $_POST["repeatpassword"]) {
+        $errors[] = "Password and Repeat Password do not match.";
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Please enter a valid email address.";
+    }
+
+    return $errors; 
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+
+    $passwordErrors = validatePassword($password);
+    $inputErrors = verify($username, $password, $email);
+    $errors = array_merge($passwordErrors, $inputErrors);
+
+    if (empty($errors)) {
+        $checkExistingUser = "SELECT username FROM register WHERE username = ?";
+        $checkStmt = $conn->prepare($checkExistingUser);
+        $checkStmt->bind_param("s", $username);
+        $checkStmt->execute();
+        $checkStmt->store_result();
+
+        if ($checkStmt->num_rows > 0) {
+            $errors[] = "Username already exists. Please choose a different username.";
+            $_SESSION['errors'] = $errors;
+            header('Location: sign up.php');
+            exit();
+        }
+
+        $checkStmt->close();
+
+        $insert = "INSERT INTO users(UserName, PasswordHash, Email, ContactNumber) VALUES (?, ?, ?, ?)";
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+        $stm = $conn->prepare($insert);
+        $stm->bind_param("ssss", $username, $hashedPassword, $email, $contactnumber);
+
+        if ($stm->execute()) {
+            echo "<script>alert('Register Successful!'); window.location.href = '../Login/Login.php'</script>";
+            exit();
+        }
+
+        $stm->close();
+    } else {
+        $_SESSION['errors'] = $errors;
+        header('Location: RegisterForm.php');
+        exit();
+    }
+
+    $conn->close();
+} else {
+    $_SESSION['error_message'] = "Invalid request method.";
+    header('Location: RegisterForm.php');
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -197,13 +298,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="password">
-            <label for="">Password</label><br>
-            <input type="password" name="" placeholder="minimum 8 digits">
+            <label for="password">Password</label><br>
+            <input type="password" name="password" placeholder="minimum 8 digits">
         </div>
 
         <div class="password">
-            <label for="password">Confirm Password</label><br>
-            <input type="password" name="password" placeholder="re-enter your password">
+            <label for="">Confirm Password</label><br>
+            <input type="password" name="" placeholder="re-enter your password">
         </div>
 
         <div class="email">
