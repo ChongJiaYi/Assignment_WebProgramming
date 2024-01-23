@@ -81,57 +81,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($checkStmt->num_rows > 0) {
             $errors[] = "Username already exists. Please choose a different username.";
             $_SESSION['errors'] = $errors;
-            header('Location: sign up.php');
+            header('Location: register.php');
             exit();
         }
 
         $checkStmt->close();
 
-        $insert = "INSERT INTO users(UserName, PasswordHash, Email, ContactNumber) VALUES (?, ?, ?, ?)";
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+        $insert = "INSERT INTO register(UserName, password, email) VALUES (?, ?, ?, ?)";
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
         $stm = $conn->prepare($insert);
         $stm->bind_param("ssss", $username, $hashedPassword, $email, $contactnumber);
 
         if ($stm->execute()) {
-            echo "<script>alert('Register Successful!'); window.location.href = '../Login/Login.php'</script>";
+            echo "<script>alert('Register Successful!'); window.location.href = 'userlogin.php'</script>";
             exit();
         }
 
         $stm->close();
     } else {
         $_SESSION['errors'] = $errors;
-        header('Location: RegisterForm.php');
+        header('Location: register.php');
         exit();
     }
 
     $conn->close();
 } else {
     $_SESSION['error_message'] = "Invalid request method.";
-    header('Location: RegisterForm.php');
+    header('Location: register.php');
     exit();
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    if (empty($username) || empty($email) || empty($password)) {
-        echo "Please fill in all required fields.";
-    } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO register (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
-
-        if ($conn->query($sql) === TRUE) {
-            header("Location: userlogin.php");
-            exit();
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-
-    $conn->close();
 }
 ?>
 
