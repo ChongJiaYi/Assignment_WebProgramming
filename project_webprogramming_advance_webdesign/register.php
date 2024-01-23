@@ -1,4 +1,5 @@
 <?php
+include 'index_register.php';
 session_start();
 $errors = isset($_SESSION['errors']) ? $_SESSION['errors'] : [];
 unset($_SESSION['errors']);
@@ -156,39 +157,41 @@ unset($_SESSION['errors']);
 </head>
 
 <body>
-    <div class="signup">
-        <div class="signuptext">
-            <h3>SIGN UP</h3>
-        </div>
-        
-        <div class="username">
-            <label for="username">Username</label><br>
-            <input type="text" name="username" placeholder="username">
-        </div>
+    <form action="userlogin.php">
+        <div class="signup">
+            <div class="signuptext">
+                <h3>SIGN UP</h3>
+            </div>
+            
+            <div class="username">
+                <label for="username">Username</label><br>
+                <input type="text" name="username" placeholder="username">
+            </div>
 
-        <div class="password">
-            <label for="password">Password</label><br>
-            <input type="password" name="password" placeholder="minimum 8 digits">
-        </div>
+            <div class="password">
+                <label for="password">Password</label><br>
+                <input type="password" name="password" placeholder="minimum 8 digits">
+            </div>
 
-        <div class="password">
-            <label for="">Confirm Password</label><br>
-            <input type="password" name="" placeholder="re-enter your password">
-        </div>
+            <div class="password">
+                <label for="">Confirm Password</label><br>
+                <input type="password" name="" placeholder="re-enter your password">
+            </div>
 
-        <div class="email">
-            <label for="email">Email</label><br>
-            <input type="email" name="email" placeholder="username@gmail.com">
-        </div>
+            <div class="email">
+                <label for="email">Email</label><br>
+                <input type="email" name="email" placeholder="username@gmail.com">
+            </div>
 
-        <a href="userlogin.php"><button class="signupbutton">Sign Up</button></a>
+            <button class="signupbutton">Sign Up</button></a>
 
-        <div class="signother">
-            <p>Or Sign In With</p>
-            <a href=""><img src="img/google.png"></a>
-            <a href=""><img src="img/facebook.png"></a>
+            <div class="signother">
+                <p>Or Sign In With</p>
+                <a href="www.google.com"><img src="img/google.png"></a>
+                <a href="www.facebook.com"><img src="img/facebook.png"></a>
+            </div>
         </div>
-    </div>
+    </form>
 
     <div class="footer">
         <div class="category">
