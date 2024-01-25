@@ -156,7 +156,7 @@ unset($_SESSION['errors']);
 </head>
 
 <body>
-    <form action="userlogin.php" method="post">
+    <form action="index_register.php" method="post">
         <div class="signup">
             <div class="signuptext">
                 <h3>SIGN UP</h3>
